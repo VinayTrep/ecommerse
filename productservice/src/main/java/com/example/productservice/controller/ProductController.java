@@ -3,9 +3,11 @@ package com.example.productservice.controller;
 import com.example.productservice.dtos.CreateProductRequestDto;
 import com.example.productservice.dtos.ProductResponseDto;
 import com.example.productservice.dtos.UpdateProductRequestDto;
+import com.example.productservice.model.Product;
 import com.example.productservice.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,9 +29,10 @@ public class ProductController {
         return ResponseEntity.status(201).body(productService.CreateProduct(product));
     }
 
-    @GetMapping("/")
-    public ResponseEntity<List<ProductResponseDto>> getAllProducts() {
-        return ResponseEntity.status(200).body(productService.GetAllProducts());
+    @GetMapping("")
+    public ResponseEntity<List<ProductResponseDto>> getAllProducts(@RequestParam("pageNumber") int pageNumber,
+                                                        @RequestParam ("pageSize") int pageSize) {
+        return ResponseEntity.status(200).body(productService.GetAllProducts(pageNumber,pageSize));
     }
 
     @GetMapping("/{id}")

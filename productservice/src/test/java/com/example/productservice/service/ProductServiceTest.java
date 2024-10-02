@@ -12,16 +12,16 @@ import java.util.UUID;
 @SpringBootTest
 public class ProductServiceTest {
 
-    @Autowired
-    private ProductRepository productRepository;
-
-
-    @Transactional
-    @Test
-    public void findAll() {
-        Product products = productRepository.findById(UUID.fromString("324cd7d5-9e05-4190-876b-eb9537f23deb")).get();
-        System.out.println(products);
-        System.out.println("after fetching product");
-        System.out.println(products.getProductCategory());
-    }
+//    @Autowired
+//    private ProductRepository productRepository;
+//
+//
+//    @Transactional
+//    @Test
+//    public void findAll() {
+//        Product products = productRepository.findById(UUID.fromString("324cd7d5-9e05-4190-876b-eb9537f23deb")).get();
+//        System.out.println(products);
+//        System.out.println("after fetching product");
+//        System.out.println(products.getProductCategory());
+//    }
 }

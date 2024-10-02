@@ -9,12 +9,13 @@ import com.example.productservice.exception.ProductNotFoundException;
 import com.example.productservice.model.Category;
 import com.example.productservice.model.Product;
 import com.example.productservice.repository.CategoryRepository;
-import com.example.productservice.repository.InventoryRepository;
 import com.example.productservice.repository.ProductRepository;
 import com.example.productservice.service.InventoryService;
 import com.example.productservice.service.ProductService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -48,9 +49,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductResponseDto> GetAllProducts() {
-        List<Product> products = productRepository.findAll();
-        return products.stream().map(ProductResponseDto::from).toList();
+    public List<ProductResponseDto> GetAllProducts(int pageNo, int pageSize) {
+        return productRepository.findAll(PageRequest.of(pageNo,pageSize)).stream()
+                .map(ProductResponseDto::from).toList();
     }
 
     @Override

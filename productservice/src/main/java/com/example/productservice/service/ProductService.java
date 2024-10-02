@@ -5,13 +5,15 @@ import com.example.productservice.dtos.ProductResponseDto;
 import com.example.productservice.dtos.UpdateProductRequestDto;
 import com.example.productservice.exception.CategoryNotFoundException;
 import com.example.productservice.exception.ProductNotFoundException;
+import com.example.productservice.model.Product;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 import java.util.UUID;
 
 public interface ProductService {
     ProductResponseDto CreateProduct(CreateProductRequestDto createProductRequestDto) throws CategoryNotFoundException;
-    List<ProductResponseDto> GetAllProducts();
+    List<ProductResponseDto> GetAllProducts(int pageNo, int pageSize);
     ProductResponseDto GetProductById(UUID id) throws ProductNotFoundException;
     ProductResponseDto UpdateProduct(UpdateProductRequestDto updateProductRequestDto,UUID productId) throws ProductNotFoundException, CategoryNotFoundException;
     void deleteProduct(UUID id);
